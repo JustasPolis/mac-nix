@@ -13,7 +13,7 @@ return {
       disable_float_background = true,
 
       enable = {
-        terminal = true,
+        terminal = false,
         legacy_highlights = true, -- Improve compatibility for previous versions of Neovim
         migrations = true, -- Handle deprecated options automatically
       },
