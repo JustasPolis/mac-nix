@@ -79,6 +79,26 @@
           HIDKeyboardModifierMappingDst = 30064771125;
         }
       ];
+
+      system.defaults.NSGlobalDomain.AppleFontSmoothing = 0;
+      system.defaults.NSGlobalDomain.AppleInterfaceStyle = "Dark";
+      system.defaults.NSGlobalDomain.AppleInterfaceStyleSwitchesAutomatically = false;
+      system.defaults.NSGlobalDomain.NSAutomaticCapitalizationEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticDashSubstitutionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticPeriodSubstitutionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticQuoteSubstitutionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticSpellingCorrectionEnabled = false;
+      system.defaults.NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
+      system.defaults.NSGlobalDomain.NSWindowResizeTime = 0.0;
+      system.defaults.NSGlobalDomain."com.apple.springing.enabled" = false;
+      system.defaults.NSGlobalDomain._HIHideMenuBar = true;
+      system.defaults.dock.autohide = true;
+      system.defaults.dock.autohide-delay = 0.0;
+      system.defaults.dock.autohide-time-modifier = 0.0;
+      system.defaults.dock.enable-spring-load-actions-on-all-items = false;
+      system.defaults.dock.launchanim = false;
+      system.defaults.dock.mineffect = "scale";
+
       nixpkgs.hostPlatform = "aarch64-darwin";
       users.users."justinpolis" = {
         home = "/Users/justinpolis";

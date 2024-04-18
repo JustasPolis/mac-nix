@@ -48,6 +48,6 @@ setup_space 5 other2
 setup_space 6 other3
 
 # move some apps automatically to specific spaces
-yabai -m rule --add app="Kitty" space=^1
-yabai -m rule --add app="Firefox" space=^2
+yabai -m rule --add app="Kitty" space=^2
+yabai -m rule --add app="Firefox" space=^3
 

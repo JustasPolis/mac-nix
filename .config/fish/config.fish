@@ -22,3 +22,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 set fish_color_valid_path
 set fish_color_redirection cyan
 set fish_color_history_current
+set fish_pager_color_prefix normal
+set fish_color_selection white
