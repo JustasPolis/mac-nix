@@ -115,11 +115,17 @@ return {
           showTodos = true,
           enableSnippets = true,
           analysisExcludedFolders = {
-            "/home/justin/.pub-cache",
+            "/Users/justinpolis/.pub-cache",
             "/nix/store",
           },
         },
       },
+    })
+
+    require("lspconfig").sourcekit.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = require("lspconfig").sourcekit.filetypes,
     })
 
     require("lspconfig").lua_ls.setup({
