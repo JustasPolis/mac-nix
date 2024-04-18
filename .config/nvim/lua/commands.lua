@@ -27,7 +27,7 @@ vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
   end,
 })
 
-vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave", "TextChanged" }, {
   group = vim.api.nvim_create_augroup("nvim_lint", { clear = true }),
   pattern = { "*.swift", "*.ts", "*.tsx", "*.js", "*.fish", "*.nix" },
   callback = function()
@@ -64,4 +64,3 @@ vim.api.nvim_create_user_command("InlayHintsToggle", function()
     vim.lsp.inlay_hint.enable(current_buf, true)
   end
 end, {})
-

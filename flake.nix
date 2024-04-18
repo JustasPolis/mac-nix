@@ -123,6 +123,10 @@
           "xcodes"
           "yabai"
           "skhd"
+          "rust"
+          "node"
+          "swiftlint"
+          "swiftformat"
         ];
 
         casks = [

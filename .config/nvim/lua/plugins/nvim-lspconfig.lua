@@ -21,7 +21,9 @@ return {
         vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
       end
 
-      vim.lsp.inlay_hint.enable(bufnr, true)
+      if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(bufnr, true)
+      end
 
       map("K", vim.lsp.buf.hover, "Hover Documentation")
 
@@ -125,7 +127,6 @@ return {
     require("lspconfig").sourcekit.setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = require("lspconfig").sourcekit.filetypes,
     })
 
     require("lspconfig").lua_ls.setup({
