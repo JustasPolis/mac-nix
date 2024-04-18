@@ -92,6 +92,7 @@ system.keyboard.enableKeyMapping = true;
     "bitwarden"
     "google-chrome"
     "alacritty"
+    "wezterm"
     ];
 
   };

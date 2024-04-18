@@ -12,27 +12,28 @@ add_newline = false
 truncate_to_repo = false
 read_only = ''
 truncation_symbol = '…/'
+style = "cyan"
 
 [git_branch]
 format = '[$symbol$branch]($style) '
 symbol = ''
-style = 'bold #c4a7e7'
+style = '#c4a7e7'
 
 [cmd_duration]
 format = ''
 
 [character]
-success_symbol = '[❯](bold purple)'
-error_symbol = '[❯](bold purple)'
+success_symbol = '[❯](purple)'
+error_symbol = '[❯](purple)'
 
 [package]
 disabled = true
 
 [jobs]
 symbol = ''
-style = 'bold red'
+style = 'red'
 
 [git_status]
 modified = "✘"
 format = '[$all_status$ahead_behind]($style) '
-style = 'bold red'
+style = 'red'
