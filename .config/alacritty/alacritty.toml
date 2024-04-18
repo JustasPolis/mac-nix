@@ -55,8 +55,8 @@ style = "Block"
 size = 15
 
 [font.normal]
-family = "JetbrainsMono Nerd Font"
-style = "SemiBold"
+family = "OperatorMono Nerd Font"
+style = "Medium"
 
 [mouse]
 hide_when_typing = true
