@@ -2,8 +2,8 @@
   description = "JustinPolis Config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
     nix-darwin.url = "github:wegank/nix-darwin/mddoc-remove";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -29,6 +29,7 @@
       environment = {
         shells = [pkgs.fish];
         systemPackages = with pkgs; [
+          vscode-extensions.vadimcn.vscode-lldb
           git
           neovim-nightly-overlay.packages.${pkgs.system}.default
           home-manager
@@ -48,9 +49,10 @@
           fzf
           bat
           lua-language-server
-          unstable.vscode-extensions.vadimcn.vscode-lldb
         ];
       };
+
+      environment.etc."codelldb".source = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
       programs.zsh.enable = true;
