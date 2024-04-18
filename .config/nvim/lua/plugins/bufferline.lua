@@ -9,7 +9,11 @@ return {
     buffer_line.setup({
       options = {
         mode = "buffers",
-        style_preset = buffer_line.style_preset.minimal,
+        style_preset = {
+          buffer_line.style_preset.minimal,
+          buffer_line.style_preset.no_italic,
+          buffer_line.style_preset.no_bold,
+        },
         themable = true,
         numbers = "ordinal",
         close_command = "bdelete! %d",
