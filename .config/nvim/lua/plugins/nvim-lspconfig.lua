@@ -25,6 +25,12 @@ return {
         vim.lsp.inlay_hint.enable(bufnr, true)
       end
 
+      if client.server_capabilities.semanticTokensProvider then
+        print("has semantic tokens")
+      else
+        print("no semantic tokens")
+      end
+
       map("K", vim.lsp.buf.hover, "Hover Documentation")
 
       map("<leader>sd", function()
