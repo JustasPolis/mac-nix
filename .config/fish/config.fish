@@ -18,3 +18,7 @@ set -x PATH $PATH ~/.cargo/bin
 bind -M default \cz 'fg 2>/dev/null; commandline -f repaint'
 bind -M insert \cz 'fg 2>/dev/null; commandline -f repaint'
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
+set fish_color_valid_path
+set fish_color_redirection cyan
+set fish_color_history_current
