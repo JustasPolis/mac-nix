@@ -42,6 +42,7 @@
           fzf
           bat
           lua-language-server
+          vscode-extensions.vadimcn.vscode-lldb
         ];
       };
       services.nix-daemon.enable = true;
@@ -128,6 +129,8 @@
           "swiftlint"
           "swiftformat"
           "xcode-build-server"
+          "xcbeautify"
+          "ruby"
         ];
 
         casks = [
