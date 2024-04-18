@@ -5,5 +5,8 @@ return {
     "mfussenegger/nvim-dap",
   },
   cmd = "Swift",
-  lazy = true,
+  lazy = false,
+  config = function()
+    require("swift").setup()
+  end,
 }

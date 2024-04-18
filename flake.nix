@@ -127,6 +127,7 @@
           "node"
           "swiftlint"
           "swiftformat"
+          "xcode-build-server"
         ];
 
         casks = [
