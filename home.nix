@@ -9,9 +9,7 @@
 }: {
   home.username = "justinpolis";
 
-  home.packages = with pkgs; [
-    unstable.vscode-extensions.vadimcn.vscode-lldb
-  ];
+  home.packages = with pkgs; [];
 
   home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
   home.file.".config/fish/functions".source = ./.config/fish/functions;

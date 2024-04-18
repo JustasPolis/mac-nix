@@ -21,10 +21,8 @@
     home-manager,
     neovim-nightly-overlay,
   }: let
-
     unstable = import nixpkgs-unstable {
       system = "aarch64-darwin";
-      config.allowUnfree = true;
     };
 
     configuration = {pkgs, ...}: {
@@ -50,6 +48,7 @@
           fzf
           bat
           lua-language-server
+          unstable.vscode-extensions.vadimcn.vscode-lldb
         ];
       };
       services.nix-daemon.enable = true;
