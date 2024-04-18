@@ -9,6 +9,9 @@
   home.file.".config/yabai".source = ./.config/yabai;
   home.file.".config/starship.toml".source = ./.config/starship/starship.toml;
   home.file.".config/skhd".source = ./.config/skhd;
+  home.file.".config/kitty".source = ./.config/kitty;
+  home.file.".config/git".source = ./.config/git;
+  home.file.".config/nvim".source = ./.config/nvim;
 
   home.stateVersion = "23.11";
 
