@@ -52,6 +52,11 @@
       programs.fish.interactiveShellInit = ''
         set fish_greeting
       '';
+      # shortcuts fix defaults read -g NSUserKeyEquivalents
+      # remap keys fix cmd <-> option key
+      # yabai fix stuff
+      # fix fish underlines and bold
+      # fish kity tab bold and italics
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.defaults.NSGlobalDomain = {
         AppleShowAllExtensions = true;
