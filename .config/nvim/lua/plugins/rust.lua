@@ -1,6 +1,6 @@
 return {
   "JustasPolis/rust.nvim",
-  dev = true,
+  dev = false,
   dependencies = {
     {
       "mfussenegger/nvim-dap",

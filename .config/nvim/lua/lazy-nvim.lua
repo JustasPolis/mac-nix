@@ -18,7 +18,7 @@ vim.g.maplocalleader = " "
 local opts = {
   lockfile = "~/nix-config/.config/nvim" .. "/lazy-lock.json",
   dev = {
-    path = "~/.projects",
+    path = "~/personal",
     fallback = false, -- Fallback to git when local plugin doesn't exist
   },
   performance = {
