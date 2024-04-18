@@ -1,8 +1,17 @@
-{ config, pkgs, lib, inputs, system, ... }: {
-
+{
+  config,
+  pkgs,
+  lib,
+  inputs,
+  unstable,
+  system,
+  ...
+}: {
   home.username = "justinpolis";
 
-  home.packages = with pkgs; [];
+  home.packages = with pkgs; [
+    unstable.vscode-extensions.vadimcn.vscode-lldb
+  ];
 
   home.file.".config/fish/config.fish".source = ./.config/fish/config.fish;
   home.file.".config/fish/functions".source = ./.config/fish/functions;
@@ -17,5 +26,4 @@
   home.stateVersion = "23.11";
 
   programs.home-manager.enable = true;
-
 }

@@ -50,7 +50,6 @@
           fzf
           bat
           lua-language-server
-          unstable.vscode-extensions.vadimcn.vscode-lldb
         ];
       };
       services.nix-daemon.enable = true;
@@ -162,7 +161,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
-          home-manager.extraSpecialArgs = {inherit inputs;};
+          home-manager.extraSpecialArgs = {inherit inputs unstable;};
           home-manager.users."justinpolis" = import ./home.nix;
         }
       ];
