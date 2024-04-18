@@ -12,6 +12,7 @@
   home.file.".config/kitty".source = ./.config/kitty;
   home.file.".config/git".source = ./.config/git;
   home.file.".config/nvim".source = ./.config/nvim;
+  home.file.".config/alacritty".source = ./.config/alacritty;
 
   home.stateVersion = "23.11";
 

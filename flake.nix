@@ -91,6 +91,7 @@ system.keyboard.enableKeyMapping = true;
     "firefox"
     "bitwarden"
     "google-chrome"
+    "alacritty"
     ];
 
   };
