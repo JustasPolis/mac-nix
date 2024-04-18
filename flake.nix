@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-23.11-darwin";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:wegank/nix-darwin/mddoc-remove";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
@@ -16,9 +17,16 @@
     self,
     nix-darwin,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     neovim-nightly-overlay,
   }: let
+
+    unstable = import nixpkgs-unstable {
+      system = "aarch64-darwin";
+      config.allowUnfree = true;
+    };
+
     configuration = {pkgs, ...}: {
       environment = {
         shells = [pkgs.fish];
@@ -42,7 +50,7 @@
           fzf
           bat
           lua-language-server
-          vscode-extensions.vadimcn.vscode-lldb
+          unstable.vscode-extensions.vadimcn.vscode-lldb
         ];
       };
       services.nix-daemon.enable = true;
