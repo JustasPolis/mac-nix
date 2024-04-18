@@ -8,9 +8,6 @@ yabai -m config right_padding  23
 yabai -m config window_gap     16
 yabai -m config window_shadow off
 yabai -m config mouse_follows_focus          on
-yabai -m config window_animation_duration 0.5
-yabai -m config window_animation_frame_rate 144
-yabai -m config window_animation_easing    ease_out_quint
 yabai -m config window_border_blur off
 yabai -m config window_border off
 
@@ -40,17 +37,6 @@ setup_space 2 firefox
 setup_space 3 other
 
 # move some apps automatically to specific spaces
-yabai -m rule --add app="Kitty" space=^1
-yabai -m rule --add app="Firefox" space=^2
+yabai -m rule --add app="kitty" space=^1
+yabai -m rule --add app="firefox" space=^2
 
-systemApp='^(System Preferences|System Information|Finder|Calendar|Mail|App Store|Activity Monitor|Dictionary|System Settings)$'
-
-manageOffApp='^(Stats|LICEcap|Homerow)$'
-
-yabai -m rule --add app="${systemApp}|${manageOffApp}" manage=off
-
-yabai -m signal --add event=window_created \
-  action='yabai -m query --windows --window $YABAI_WINDOW_ID \
-  | jq -er ".\"can-resize\" or .\"is-floating\"" || \
-  yabai -m window $YABAI_WINDOW_ID --toggle float' \
-  app!="${systemApp}|${manageOffApp}"

@@ -49,6 +49,11 @@
       '';
       system.configurationRevision = self.rev or self.dirtyRev or null;
       system.stateVersion = 4;
+system.keyboard.enableKeyMapping = true;
+     system.keyboard.userKeyMapping = [
+{HIDKeyboardModifierMappingSrc = 30064771125; HIDKeyboardModifierMappingDst = 30064771172;}
+{HIDKeyboardModifierMappingSrc = 30064771172; HIDKeyboardModifierMappingDst = 30064771125;}
+     ];
       nixpkgs.hostPlatform = "aarch64-darwin";
     users.users."justinpolis" = {
     home = "/Users/justinpolis";
@@ -85,6 +90,7 @@
     "kitty"
     "firefox"
     "bitwarden"
+    "google-chrome"
     ];
 
   };
