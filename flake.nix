@@ -65,7 +65,6 @@
       '';
       # shortcuts fix defaults read -g NSUserKeyEquivalents
       system.configurationRevision = self.rev or self.dirtyRev or null;
-      system.defaults.universalaccess.reduceMotion = true;
       system.keyboard.swapLeftCommandAndLeftAlt = true;
       system.defaults.NSGlobalDomain = {
         AppleShowAllExtensions = true;
@@ -151,14 +150,11 @@
           "appcleaner"
           "mos"
           "kitty"
-          "firefox"
           "bitwarden"
-          "google-chrome"
-          "alacritty"
-          "wezterm"
           "monitorcontrol"
           "hammerspoon"
           "raycast"
+          "obsidian"
         ];
       };
     };

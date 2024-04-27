@@ -153,7 +153,7 @@ return {
             callSnippet = "Replace",
             showParams = true,
           },
-          diagnostics = { disable = { "missing-fields" }, delay = 1000, globals = { "vim" } },
+          diagnostics = { disable = { "missing-fields" }, delay = 1000, globals = { "vim", "hs" } },
         },
       },
     })
