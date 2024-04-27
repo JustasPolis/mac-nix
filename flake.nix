@@ -49,10 +49,12 @@
           fzf
           bat
           lua-language-server
+          python39
+          boringtun
+          wireguard-tools
         ];
       };
 
-      environment.etc."codelldb".source = "${pkgs.vscode-extensions.vadimcn.vscode-lldb}/share/vscode/extensions/vadimcn.vscode-lldb/adapter/codelldb";
       services.nix-daemon.enable = true;
       nix.settings.experimental-features = "nix-command flakes";
       programs.zsh.enable = true;
@@ -63,6 +65,7 @@
       '';
       # shortcuts fix defaults read -g NSUserKeyEquivalents
       system.configurationRevision = self.rev or self.dirtyRev or null;
+      system.defaults.universalaccess.reduceMotion = true;
       system.keyboard.swapLeftCommandAndLeftAlt = true;
       system.defaults.NSGlobalDomain = {
         AppleShowAllExtensions = true;
@@ -83,6 +86,10 @@
         {
           HIDKeyboardModifierMappingSrc = 30064771172;
           HIDKeyboardModifierMappingDst = 30064771125;
+        }
+        {
+          HIDKeyboardModifierMappingDst = 30064771181;
+          HIDKeyboardModifierMappingSrc = 30064771129;
         }
       ];
 
@@ -131,7 +138,6 @@
         brews = [
           "xcodes"
           "yabai"
-          "skhd"
           "rust"
           "node"
           "swiftlint"
@@ -151,6 +157,8 @@
           "alacritty"
           "wezterm"
           "monitorcontrol"
+          "hammerspoon"
+          "raycast"
         ];
       };
     };
