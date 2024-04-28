@@ -18,6 +18,12 @@ end
 --   end
 -- end
 
+local function yabai(commands)
+	for _, cmd in ipairs(commands) do
+		os.execute("/opt/homebrew/bin/yabai -m " .. cmd)
+	end
+end
+
 hs.loadSpoon("RecursiveBinder")
 
 spoon.RecursiveBinder.escapeKey = { {}, "escape" } -- Press escape to abort
@@ -29,9 +35,16 @@ local keyMap = {
 	[singleKey("r", "reload")] = function()
 		hs:reload()
 	end,
-	[singleKey("s", "spaces")] = {
-		[singleKey("c", "create")] = function()
+	[singleKey("m", "move")] = {
+		[singleKey("e", "empty")] = function()
 			createNewSpace()
+			local focusedWindow = hs.window.focusedWindow()
+			local spaces = hs.spaces.allSpaces()
+			local uuid = focusedWindow:screen():getUUID() -- uuid for current screen
+			local spaceIDs = spaces[uuid]
+			local lastSpaceID = spaceIDs[#spaceIDs]
+			--hs.spaces.moveWindowToSpace(focusedWindow:id(), lastSpaceID)
+			yabai({ "window --space 3" })
 		end,
 	},
 	[singleKey("a", "apps")] = {
@@ -48,3 +61,13 @@ local keyMap = {
 }
 
 hs.hotkey.bind({}, "F18", spoon.RecursiveBinder.recursiveBind(keyMap))
+
+local spaceItem = hs.menubar.new(true, "spaceItem")
+
+spaceItem:setTitle("Space:" .. hs.spaces.focusedSpace())
+
+hs.spaces.watcher
+	.new(function(s)
+		spaceItem:setTitle("Space:" .. hs.spaces.focusedSpace())
+	end)
+	:start()
