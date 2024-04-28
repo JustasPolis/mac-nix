@@ -145,6 +145,9 @@
           "xcbeautify"
           "ruby"
           "borders"
+          "switchaudio-osx"
+          "nowplaying-cli"
+          "sketchybar"
         ];
 
         casks = [
@@ -156,6 +159,9 @@
           "hammerspoon"
           "raycast"
           "obsidian"
+          "sf-symbols"
+          "homebrew/cask-fonts/font-sf-mono"
+          "homebrew/cask-fonts/font-sf-pro"
         ];
       };
     };
