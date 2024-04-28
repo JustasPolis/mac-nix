@@ -105,8 +105,7 @@
       system.defaults.NSGlobalDomain."com.apple.springing.enabled" = false;
       system.defaults.NSGlobalDomain._HIHideMenuBar = true;
       system.defaults.dock.autohide = true;
-      system.defaults.dock.autohide-delay = 0.0;
-      system.defaults.dock.autohide-time-modifier = 0.0;
+      system.defaults.dock.autohide-delay = 1000.0;
       system.defaults.dock.enable-spring-load-actions-on-all-items = false;
       system.defaults.dock.launchanim = false;
       system.defaults.dock.mineffect = "scale";
@@ -132,6 +131,7 @@
           "homebrew/services"
           "homebrew/cask-versions"
           "koekeishiya/formulae"
+          "FelixKratz/formulae"
         ];
 
         brews = [
@@ -144,6 +144,7 @@
           "xcode-build-server"
           "xcbeautify"
           "ruby"
+          "borders"
         ];
 
         casks = [

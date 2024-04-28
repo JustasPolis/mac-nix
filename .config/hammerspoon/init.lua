@@ -1,30 +1,22 @@
--- Define a function to create a new space
 local function createNewSpace()
 	local currentScreen = hs.screen.mainScreen()
 	hs.spaces.addSpaceToScreen(currentScreen, true)
 end
 
--- Bind a hotkey to create a new space
-hs.hotkey.bind({ "ctrl" }, "Q", function()
-	createNewSpace()
-end)
-
-hs.hotkey.bind({ "ctrl" }, "W", function()
-	local spaces = hs.spaces.missionControlSpaceNames(true)
-	hs.spaces.gotoSpace(165)
-end)
-
-local app = "com.apple.dt.Xcode"
+-- hs.hotkey.bind({ "ctrl" }, "W", function()
+--   local spaces = hs.spaces.missionControlSpaceNames(true)
+--   hs.spaces.gotoSpace(165)
+-- end)
 
 -- Function to focus on a window with a specific application ID
-local function focusAppWindow()
-	local appWindows = hs.window.filter.new(false):setAppFilter("kitty", {}):getWindows()
-	if #appWindows > 0 then
-		appWindows[1]:focus()
-	else
-		print("No windows found for application with ID: " .. app)
-	end
-end
+-- local function focusAppWindow()
+--   local appWindows = hs.window.filter.new(false):setAppFilter("kitty", {}):getWindows()
+--   if #appWindows > 0 then
+--     appWindows[1]:focus()
+--   else
+--     print("No windows found for application with ID: " .. app)
+--   end
+-- end
 
 hs.loadSpoon("RecursiveBinder")
 
@@ -37,6 +29,11 @@ local keyMap = {
 	[singleKey("r", "reload")] = function()
 		hs:reload()
 	end,
+	[singleKey("s", "spaces")] = {
+		[singleKey("c", "create")] = function()
+			createNewSpace()
+		end,
+	},
 	[singleKey("a", "apps")] = {
 		[singleKey("t", "terminal")] = function()
 			hs.application.launchOrFocus("kitty")
