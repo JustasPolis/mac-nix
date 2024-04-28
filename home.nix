@@ -20,7 +20,6 @@
   home.file.".config/git".source = ./.config/git;
   home.file.".config/nvim".source = ./.config/nvim;
   home.file.".config/alacritty".source = ./.config/alacritty;
-  home.file.".config/sketchybar".source = ./.config/sketchybar;
   home.file."/.hammerspoon".source = ./.config/hammerspoon;
 
   home.stateVersion = "23.11";

@@ -103,7 +103,6 @@
       system.defaults.NSGlobalDomain.NSAutomaticWindowAnimationsEnabled = false;
       system.defaults.NSGlobalDomain.NSWindowResizeTime = 0.0;
       system.defaults.NSGlobalDomain."com.apple.springing.enabled" = false;
-      system.defaults.NSGlobalDomain._HIHideMenuBar = true;
       system.defaults.dock.autohide = true;
       system.defaults.dock.autohide-delay = 1000.0;
       system.defaults.dock.enable-spring-load-actions-on-all-items = false;
@@ -147,7 +146,6 @@
           "borders"
           "switchaudio-osx"
           "nowplaying-cli"
-          "sketchybar"
         ];
 
         casks = [
@@ -159,9 +157,6 @@
           "hammerspoon"
           "raycast"
           "obsidian"
-          "sf-symbols"
-          "homebrew/cask-fonts/font-sf-mono"
-          "homebrew/cask-fonts/font-sf-pro"
         ];
       };
     };

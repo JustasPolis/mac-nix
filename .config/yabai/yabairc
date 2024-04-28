@@ -10,9 +10,7 @@ yabai -m config window_border off
 yabai -m config focus_follows_mouse off
 yabai -m config mouse_follows_focus on
 yabai -m config focus_follows_mouse on
-yabai -m config menubar_opacity 0.0
 borders active_color=0xffc4a7e7 inactive_color= width=7.0 &
-yabai -m config external_bar all:30:0
 
 
 yabai -m rule --add app="^(LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|Python|LibreOffice|App Store|Steam|Alfred|Activity Monitor)$" manage=off
