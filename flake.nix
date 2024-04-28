@@ -146,6 +146,7 @@
           "borders"
           "switchaudio-osx"
           "nowplaying-cli"
+          "blueutil"
         ];
 
         casks = [
