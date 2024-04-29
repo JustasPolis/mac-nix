@@ -42,9 +42,7 @@ local keyMap = {
 			local spaces = hs.spaces.allSpaces()
 			local uuid = focusedWindow:screen():getUUID() -- uuid for current screen
 			local spaceIDs = spaces[uuid]
-			local lastSpaceID = spaceIDs[#spaceIDs]
-			--hs.spaces.moveWindowToSpace(focusedWindow:id(), lastSpaceID)
-			yabai({ "window --space 3" })
+			yabai({ "window --space " .. #spaceIDs })
 		end,
 	},
 	[singleKey("a", "apps")] = {
@@ -68,6 +66,14 @@ spaceItem:setTitle("Space:" .. hs.spaces.focusedSpace())
 
 hs.spaces.watcher
 	.new(function(s)
-		spaceItem:setTitle("Space:" .. hs.spaces.focusedSpace())
+		local spaces = hs.spaces.allSpaces()
+		local uuid = hs.screen.mainScreen():getUUID()
+		local spaceIDs = spaces[uuid]
+		for i, v in ipairs(spaceIDs) do
+			print(i, v)
+			if v == hs.spaces.focusedSpace() then
+				spaceItem:setTitle("Space:" .. i)
+			end
+		end
 	end)
 	:start()
