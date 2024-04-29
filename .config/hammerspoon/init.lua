@@ -3,21 +3,6 @@ local function createNewSpace()
 	hs.spaces.addSpaceToScreen(currentScreen, true)
 end
 
--- hs.hotkey.bind({ "ctrl" }, "W", function()
---   local spaces = hs.spaces.missionControlSpaceNames(true)
---   hs.spaces.gotoSpace(165)
--- end)
-
--- Function to focus on a window with a specific application ID
--- local function focusAppWindow()
---   local appWindows = hs.window.filter.new(false):setAppFilter("kitty", {}):getWindows()
---   if #appWindows > 0 then
---     appWindows[1]:focus()
---   else
---     print("No windows found for application with ID: " .. app)
---   end
--- end
-
 local function yabai(commands)
 	for _, cmd in ipairs(commands) do
 		os.execute("/opt/homebrew/bin/yabai -m " .. cmd)
@@ -44,6 +29,27 @@ local keyMap = {
 			local spaceIDs = spaces[uuid]
 			yabai({ "window --space " .. #spaceIDs })
 		end,
+		[singleKey("1", "empty")] = function()
+			yabai({ "window --space 1" })
+		end,
+		[singleKey("2", "empty")] = function()
+			yabai({ "window --space 2" })
+		end,
+		[singleKey("3", "empty")] = function()
+			yabai({ "window --space 3" })
+		end,
+		[singleKey("4", "empty")] = function()
+			yabai({ "window --space 4" })
+		end,
+		[singleKey("5", "empty")] = function()
+			yabai({ "window --space 5" })
+		end,
+		[singleKey("6", "empty")] = function()
+			yabai({ "window --space 6" })
+		end,
+		[singleKey("7", "empty")] = function()
+			yabai({ "window --space 7" })
+		end,
 	},
 	[singleKey("a", "apps")] = {
 		[singleKey("t", "terminal")] = function()
@@ -62,7 +68,14 @@ hs.hotkey.bind({}, "F18", spoon.RecursiveBinder.recursiveBind(keyMap))
 
 local spaceItem = hs.menubar.new(true, "spaceItem")
 
-spaceItem:setTitle("Space:" .. hs.spaces.focusedSpace())
+local spaces = hs.spaces.allSpaces()
+local uuid = hs.screen.mainScreen():getUUID()
+local spaceIDs = spaces[uuid]
+for i, v in ipairs(spaceIDs) do
+	if v == hs.spaces.focusedSpace() then
+		spaceItem:setTitle("Space:" .. i)
+	end
+end
 
 hs.spaces.watcher
 	.new(function(s)
@@ -70,7 +83,6 @@ hs.spaces.watcher
 		local uuid = hs.screen.mainScreen():getUUID()
 		local spaceIDs = spaces[uuid]
 		for i, v in ipairs(spaceIDs) do
-			print(i, v)
 			if v == hs.spaces.focusedSpace() then
 				spaceItem:setTitle("Space:" .. i)
 			end
