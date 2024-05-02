@@ -134,7 +134,6 @@
         ];
 
         brews = [
-          "xcodes"
           "yabai"
           "rust"
           "node"
@@ -158,6 +157,7 @@
           "hammerspoon"
           "raycast"
           "obsidian"
+          "xcodes"
         ];
       };
     };
