@@ -7,8 +7,8 @@ set BAT_THEME "ansi"
 set -g fish_key_bindings fish_vi_key_bindings
 
 bind -M insert \t accept-autosuggestion
-bind -M insert \cn 'commandline -f complete'
-bind -M insert \cp 'commandline -f complete-and-search'
+bind -M insert \e\[B 'commandline -f complete'
+bind -M insert \e\[A 'commandline -f complete-and-search'
 
 bind yy fish_clipboard_copy
 bind p fish_clipboard_paste
