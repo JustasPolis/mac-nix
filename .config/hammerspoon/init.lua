@@ -59,7 +59,21 @@ local keyMap = {
 			hs.application.launchOrFocus("Arc")
 		end,
 		[singleKey("x", "xcode")] = function()
-			hs.application.launchOrFocus("Xcode-15.2.0")
+			hs.application.launchOrFocus("/System/Volumes/Data/Applications/Xcode-15.2.0.app/")
+		end,
+	},
+	[singleKey("f", "focus")] = {
+		[singleKey("l", "right")] = function()
+			yabai({ "window --focus east" })
+		end,
+		[singleKey("h", "left")] = function()
+			yabai({ "window --focus west" })
+		end,
+		[singleKey("k", "top")] = function()
+			yabai({ "window --focus north" })
+		end,
+		[singleKey("j", "bottom")] = function()
+			yabai({ "window --focus south" })
 		end,
 	},
 }
@@ -89,3 +103,23 @@ hs.spaces.watcher
 		end
 	end)
 	:start()
+
+local function pressFn(mods, key)
+	if key == nil then
+		key = mods
+		mods = {}
+	end
+
+	return function()
+		hs.eventtap.keyStroke(mods, key, 1000)
+	end
+end
+
+local function remap(mods, key, pressFn)
+	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
+end
+
+remap({ "ctrl" }, "n", pressFn("down"))
+remap({ "ctrl" }, "p", pressFn("up"))
+remap({ "ctrl", "shift" }, "n", pressFn("right"))
+remap({ "ctrl", "shift" }, "p", pressFn("left"))
