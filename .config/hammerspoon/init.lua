@@ -1,3 +1,23 @@
+local function pressFn(mods, key)
+	if key == nil then
+		key = mods
+		mods = {}
+	end
+
+	return function()
+		hs.eventtap.keyStroke(mods, key, 1000)
+	end
+end
+
+local function remap(mods, key, pressFn)
+	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
+end
+
+remap({ "ctrl" }, "n", pressFn("down"))
+remap({ "ctrl" }, "p", pressFn("up"))
+remap({ "ctrl", "shift" }, "n", pressFn("right"))
+remap({ "ctrl", "shift" }, "p", pressFn("left"))
+
 local function createNewSpace()
 	local currentScreen = hs.screen.mainScreen()
 	hs.spaces.addSpaceToScreen(currentScreen, true)
@@ -75,6 +95,40 @@ local keyMap = {
 		[singleKey("j", "bottom")] = function()
 			yabai({ "window --focus south" })
 		end,
+		[singleKey("n", "next")] = function()
+			local xcode = hs.application.get("Xcode")
+			hs.eventtap.keyStroke({ "alt", "cmd" }, "`", 200, xcode)
+		end,
+	},
+	[singleKey("x", "xcode")] = {
+		[singleKey("f", "focus")] = {
+			[singleKey("n", "next")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "alt", "cmd" }, "`", 200, xcode)
+			end,
+		},
+		[singleKey("g", "goto")] = {
+			[singleKey("d", "jump to definition")] = function()
+				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "J")
+			end,
+			[singleKey("b", "go back")] = function()
+				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "left")
+			end,
+		},
+		[singleKey("t", "toggle")] = {
+			[singleKey("d", "debug")] = function()
+				hs.eventtap.keyStroke({ "shift", "cmd" }, "Y")
+			end,
+			[singleKey("n", "navigator")] = function()
+				hs.eventtap.keyStroke({ "alt", "shift" }, "B")
+			end,
+		},
+		[singleKey("n", "navigator")] = {
+			[singleKey("p", "projects")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "cmd" }, "1", 200, xcode)
+			end,
+		},
 	},
 }
 
@@ -103,23 +157,3 @@ hs.spaces.watcher
 		end
 	end)
 	:start()
-
-local function pressFn(mods, key)
-	if key == nil then
-		key = mods
-		mods = {}
-	end
-
-	return function()
-		hs.eventtap.keyStroke(mods, key, 1000)
-	end
-end
-
-local function remap(mods, key, pressFn)
-	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
-end
-
-remap({ "ctrl" }, "n", pressFn("down"))
-remap({ "ctrl" }, "p", pressFn("up"))
-remap({ "ctrl", "shift" }, "n", pressFn("right"))
-remap({ "ctrl", "shift" }, "p", pressFn("left"))
