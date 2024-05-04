@@ -95,10 +95,6 @@ local keyMap = {
 		[singleKey("j", "bottom")] = function()
 			yabai({ "window --focus south" })
 		end,
-		[singleKey("n", "next")] = function()
-			local xcode = hs.application.get("Xcode")
-			hs.eventtap.keyStroke({ "alt", "cmd" }, "`", 200, xcode)
-		end,
 	},
 	[singleKey("x", "xcode")] = {
 		[singleKey("f", "focus")] = {
@@ -107,6 +103,13 @@ local keyMap = {
 				hs.eventtap.keyStroke({ "alt", "cmd" }, "`", 200, xcode)
 			end,
 		},
+		[singleKey("s", "show")] = {
+			[singleKey("a", "actions")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "shift", "cmd" }, "A", 200, xcode)
+			end,
+		},
+
 		[singleKey("g", "goto")] = {
 			[singleKey("d", "jump to definition")] = function()
 				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "J")
@@ -114,6 +117,17 @@ local keyMap = {
 			[singleKey("b", "go back")] = function()
 				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "left")
 			end,
+			[singleKey("f", "go forward")] = function()
+				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "right")
+			end,
+			[singleKey("t", "tabs")] = {
+				[singleKey("n", "next tab")] = function()
+					hs.eventtap.keyStroke({ "shift", "cmd" }, "]")
+				end,
+				[singleKey("p", "previous tab")] = function()
+					hs.eventtap.keyStroke({ "shift", "cmd" }, "[")
+				end,
+			},
 		},
 		[singleKey("t", "toggle")] = {
 			[singleKey("d", "debug")] = function()
@@ -121,6 +135,16 @@ local keyMap = {
 			end,
 			[singleKey("n", "navigator")] = function()
 				hs.eventtap.keyStroke({ "alt", "shift" }, "B")
+			end,
+		},
+		[singleKey("c", "command")] = {
+			[singleKey("r", "run")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "cmd" }, "R", 200, xcode)
+			end,
+			[singleKey("f", "format")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "ctrl" }, "I", 200, xcode)
 			end,
 		},
 		[singleKey("n", "navigator")] = {
