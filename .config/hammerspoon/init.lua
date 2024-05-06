@@ -79,7 +79,7 @@ local keyMap = {
 			hs.application.launchOrFocus("Arc")
 		end,
 		[singleKey("x", "xcode")] = function()
-			hs.application.launchOrFocus("/System/Volumes/Data/Applications/Xcode-15.2.0.app/")
+			hs.application.launchOrFocus("/System/Volumes/Data/Applications/Xcode-15.3.0.app/")
 		end,
 	},
 	[singleKey("f", "focus")] = {
@@ -129,14 +129,6 @@ local keyMap = {
 				end,
 			},
 		},
-		[singleKey("t", "toggle")] = {
-			[singleKey("d", "debug")] = function()
-				hs.eventtap.keyStroke({ "shift", "cmd" }, "Y")
-			end,
-			[singleKey("n", "navigator")] = function()
-				hs.eventtap.keyStroke({ "alt", "shift" }, "B")
-			end,
-		},
 		[singleKey("c", "command")] = {
 			[singleKey("r", "run")] = function()
 				local xcode = hs.application.get("Xcode")
@@ -147,10 +139,20 @@ local keyMap = {
 				hs.eventtap.keyStroke({ "ctrl" }, "I", 200, xcode)
 			end,
 		},
+		[singleKey("d", "debug")] = {
+			[singleKey("t", "toggle")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "shift", "cmd" }, "Y", 200, xcode)
+			end,
+		},
 		[singleKey("n", "navigator")] = {
 			[singleKey("p", "projects")] = function()
 				local xcode = hs.application.get("Xcode")
 				hs.eventtap.keyStroke({ "cmd" }, "1", 200, xcode)
+			end,
+			[singleKey("t", "toggle")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "alt", "shift" }, "B", xcode)
 			end,
 		},
 	},

@@ -158,6 +158,7 @@
           "raycast"
           "obsidian"
           "xcodes"
+          "qbittorrent"
         ];
       };
     };

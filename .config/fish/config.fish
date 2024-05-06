@@ -5,11 +5,6 @@ abbr --add nixrebuild 'darwin-rebuild switch --flake ~/nix-config/.#justinpolis'
 set EDITOR nvim
 set BAT_THEME "ansi"
 set -g fish_key_bindings fish_vi_key_bindings
-set fish_vi_key_bindings default
-
-for mode in default insert visual
-  bind -M $mode \r -m default execute
-end
 
 bind -M insert \t accept-autosuggestion
 bind -M insert \e\[B 'commandline -f complete'
