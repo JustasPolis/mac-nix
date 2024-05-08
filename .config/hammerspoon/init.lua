@@ -141,6 +141,10 @@ local keyMap = {
 				local xcode = hs.application.get("Xcode")
 				hs.eventtap.keyStroke({ "ctrl" }, "I", 200, xcode)
 			end,
+			[singleKey("t", "test")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "ctrl", "alt", "cmd" }, "U", 200, xcode)
+			end,
 		},
 		[singleKey("d", "debug")] = {
 			[singleKey("t", "toggle")] = function()
