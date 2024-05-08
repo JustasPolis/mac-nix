@@ -109,7 +109,14 @@ local keyMap = {
 				hs.eventtap.keyStroke({ "shift", "cmd" }, "A", 200, xcode)
 			end,
 		},
-
+		[singleKey("t", "tabs")] = {
+			[singleKey("n", "next tab")] = function()
+				hs.eventtap.keyStroke({ "shift", "cmd" }, "]")
+			end,
+			[singleKey("p", "previous tab")] = function()
+				hs.eventtap.keyStroke({ "shift", "cmd" }, "[")
+			end,
+		},
 		[singleKey("g", "goto")] = {
 			[singleKey("d", "jump to definition")] = function()
 				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "J")
@@ -120,19 +127,15 @@ local keyMap = {
 			[singleKey("f", "go forward")] = function()
 				hs.eventtap.keyStroke({ "ctrl", "cmd" }, "right")
 			end,
-			[singleKey("t", "tabs")] = {
-				[singleKey("n", "next tab")] = function()
-					hs.eventtap.keyStroke({ "shift", "cmd" }, "]")
-				end,
-				[singleKey("p", "previous tab")] = function()
-					hs.eventtap.keyStroke({ "shift", "cmd" }, "[")
-				end,
-			},
 		},
 		[singleKey("c", "command")] = {
 			[singleKey("r", "run")] = function()
 				local xcode = hs.application.get("Xcode")
 				hs.eventtap.keyStroke({ "cmd" }, "R", 200, xcode)
+			end,
+			[singleKey("s", "save")] = function()
+				local xcode = hs.application.get("Xcode")
+				hs.eventtap.keyStroke({ "cmd" }, "S", 200, xcode)
 			end,
 			[singleKey("f", "format")] = function()
 				local xcode = hs.application.get("Xcode")

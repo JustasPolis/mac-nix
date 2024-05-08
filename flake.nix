@@ -65,12 +65,12 @@
       '';
       # shortcuts fix defaults read -g NSUserKeyEquivalents
       system.configurationRevision = self.rev or self.dirtyRev or null;
-      system.keyboard.swapLeftCommandAndLeftAlt = true;
+     #system.keyboard.swapLeftCommandAndLeftAlt = true;
       system.defaults.NSGlobalDomain = {
         AppleShowAllExtensions = true;
 
         KeyRepeat = 1;
-        InitialKeyRepeat = 7;
+        InitialKeyRepeat = 10;
 
         "com.apple.sound.beep.volume" = 0.0;
         "com.apple.sound.beep.feedback" = 0;
@@ -159,6 +159,7 @@
           "obsidian"
           "xcodes"
           "qbittorrent"
+          "swiftformat-for-xcode"
         ];
       };
     };
