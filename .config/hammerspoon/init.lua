@@ -36,6 +36,12 @@ spoon.RecursiveBinder.showBindHelper = false
 
 local singleKey = spoon.RecursiveBinder.singleKey
 
+local result =  hs.application.find("com.apple.finder"):allWindows()
+
+for i, v in pairs(result) do
+	print(i, v)
+end
+
 local keyMap = {
 	[singleKey("r", "reload")] = function()
 		hs:reload()

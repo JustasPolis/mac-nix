@@ -52,6 +52,7 @@
           python39
           boringtun
           wireguard-tools
+          direnv
         ];
       };
 
