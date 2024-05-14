@@ -13,6 +13,24 @@ local function remap(mods, key, pressFn)
 	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
 end
 
+hs.hotkey.bind("alt", "tab", function() end, nil, nil)
+
+function mapCmdTab(event)
+	local flags = event:getFlags()
+	local chars = event:getCharacters()
+	if chars == "\t" and flags:containExactly({ "cmd" }) then
+		os.execute("open -g raycast://extensions/raycast/navigation/switch-windows")
+		return true
+	elseif chars == string.char(25) and flags:containExactly({ "cmd", "shift" }) then
+		return true
+	elseif chars == "\t" and flags:containExactly({ "cmd", "shift" }) then
+		return true
+	end
+end
+
+tapCmdTab = hs.eventtap.new({ hs.eventtap.event.types.keyDown }, mapCmdTab)
+tapCmdTab:start()
+
 remap({ "ctrl" }, "n", pressFn("down"))
 remap({ "ctrl" }, "p", pressFn("up"))
 remap({ "ctrl", "shift" }, "n", pressFn("right"))
@@ -35,12 +53,6 @@ spoon.RecursiveBinder.escapeKey = { {}, "escape" } -- Press escape to abort
 spoon.RecursiveBinder.showBindHelper = false
 
 local singleKey = spoon.RecursiveBinder.singleKey
-
-local result =  hs.application.find("com.apple.finder"):allWindows()
-
-for i, v in pairs(result) do
-	print(i, v)
-end
 
 local keyMap = {
 	[singleKey("r", "reload")] = function()
