@@ -13,8 +13,6 @@ local function remap(mods, key, pressFn)
 	hs.hotkey.bind(mods, key, pressFn, nil, pressFn)
 end
 
-hs.hotkey.bind("alt", "tab", function() end, nil, nil)
-
 function mapCmdTab(event)
 	local flags = event:getFlags()
 	local chars = event:getCharacters()
@@ -55,9 +53,6 @@ spoon.RecursiveBinder.showBindHelper = false
 local singleKey = spoon.RecursiveBinder.singleKey
 
 local keyMap = {
-	[singleKey("r", "reload")] = function()
-		hs:reload()
-	end,
 	[singleKey("m", "move")] = {
 		[singleKey("e", "empty")] = function()
 			createNewSpace()
@@ -66,27 +61,6 @@ local keyMap = {
 			local uuid = focusedWindow:screen():getUUID() -- uuid for current screen
 			local spaceIDs = spaces[uuid]
 			yabai({ "window --space " .. #spaceIDs })
-		end,
-		[singleKey("1", "empty")] = function()
-			yabai({ "window --space 1" })
-		end,
-		[singleKey("2", "empty")] = function()
-			yabai({ "window --space 2" })
-		end,
-		[singleKey("3", "empty")] = function()
-			yabai({ "window --space 3" })
-		end,
-		[singleKey("4", "empty")] = function()
-			yabai({ "window --space 4" })
-		end,
-		[singleKey("5", "empty")] = function()
-			yabai({ "window --space 5" })
-		end,
-		[singleKey("6", "empty")] = function()
-			yabai({ "window --space 6" })
-		end,
-		[singleKey("7", "empty")] = function()
-			yabai({ "window --space 7" })
 		end,
 	},
 	[singleKey("a", "apps")] = {
@@ -112,6 +86,14 @@ local keyMap = {
 		end,
 		[singleKey("j", "bottom")] = function()
 			yabai({ "window --focus south" })
+		end,
+	},
+	[singleKey("r", "resize")] = {
+		[singleKey("h", "half")] = function()
+			yabai({ "window --ratio abs:0.5" })
+		end,
+		[singleKey("q", "q")] = function()
+			yabai({ "window --ratio abs:0.77" })
 		end,
 	},
 	[singleKey("x", "xcode")] = {
