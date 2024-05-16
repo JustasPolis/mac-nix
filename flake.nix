@@ -2,9 +2,9 @@
   description = "JustinPolis Config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
-    nix-darwin.url = "github:wegank/nix-darwin/mddoc-remove";
+    nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
@@ -29,7 +29,6 @@
       environment = {
         shells = [pkgs.fish];
         systemPackages = with pkgs; [
-          vscode-extensions.vadimcn.vscode-lldb
           git
           neovim-nightly-overlay.packages.${pkgs.system}.default
           home-manager
@@ -66,7 +65,7 @@
       '';
       # shortcuts fix defaults read -g NSUserKeyEquivalents
       system.configurationRevision = self.rev or self.dirtyRev or null;
-     #system.keyboard.swapLeftCommandAndLeftAlt = true;
+      #system.keyboard.swapLeftCommandAndLeftAlt = true;
       system.defaults.NSGlobalDomain = {
         AppleShowAllExtensions = true;
 
@@ -140,9 +139,6 @@
           "node"
           "swiftlint"
           "swiftformat"
-          "xcode-build-server"
-          "xcbeautify"
-          "ruby"
           "borders"
           "switchaudio-osx"
           "nowplaying-cli"
@@ -161,6 +157,8 @@
           "xcodes"
           "qbittorrent"
           "swiftformat-for-xcode"
+          "bartender"
+          #"betterdisplay"
         ];
       };
     };
