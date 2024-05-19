@@ -4,10 +4,10 @@ yabai -m config bottom_padding 23
 yabai -m config left_padding   23
 yabai -m config right_padding  23
 yabai -m config window_gap     16
-yabai -m window_border off
 yabai -m config mouse_drop_action off
-borders active_color=0xff939DFE inactive_color= width=7.0 &
+borders active_color=0xffD48291 inactive_color= width=7.0 &
 
+#borders active_color=0xff939DFE inactive_color= width=7.0 &
 
 yabai -m rule --add app="^(Raycast|LuLu|Calculator|Software Update|Dictionary|VLC|System Preferences|System Settings|zoom.us|Photo Booth|Archive Utility|App Store|Activity Monitor|Finder)$" manage=off
 yabai -m rule --add app="^(Simulator)" manage=on

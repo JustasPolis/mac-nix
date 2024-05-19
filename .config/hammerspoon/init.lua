@@ -17,7 +17,7 @@ function mapCmdTab(event)
 	local flags = event:getFlags()
 	local chars = event:getCharacters()
 	if chars == "\t" and flags:containExactly({ "cmd" }) then
-		os.execute("open -g raycast://extensions/raycast/navigation/switch-windows")
+		os.execute("open -g raycast://extensions/justinpolis/applications/open-app")
 		return true
 	elseif chars == string.char(25) and flags:containExactly({ "cmd", "shift" }) then
 		return true
@@ -72,6 +72,11 @@ local keyMap = {
 		end,
 		[singleKey("x", "xcode")] = function()
 			hs.application.launchOrFocus("/System/Volumes/Data/Applications/Xcode-15.3.0.app/")
+		end,
+	},
+	[singleKey("r", "raycast")] = {
+		[singleKey("m", "menu items")] = function()
+			os.execute("open -g raycast://extensions/raycast/navigation/search-menu-items")
 		end,
 	},
 	[singleKey("f", "focus")] = {
@@ -194,5 +199,5 @@ hs.spaces.watcher
 hs.ipc = require("hs.ipc")
 hs.ipc.cliInstall("/opt/homebrew/bin")
 function bar(arg)
-  print("Hello from bar! The arg is ".. arg)
+	print("Hello from bar! The arg is " .. arg)
 end
