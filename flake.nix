@@ -131,6 +131,7 @@
           "homebrew/cask-versions"
           "koekeishiya/formulae"
           "FelixKratz/formulae"
+          "JustasPolis/formulae"
         ];
 
         brews = [
@@ -143,6 +144,7 @@
           "switchaudio-osx"
           "nowplaying-cli"
           "blueutil"
+          "mac-apps"
         ];
 
         casks = [

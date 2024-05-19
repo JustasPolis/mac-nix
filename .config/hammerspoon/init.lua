@@ -190,3 +190,9 @@ hs.spaces.watcher
 		end
 	end)
 	:start()
+
+hs.ipc = require("hs.ipc")
+hs.ipc.cliInstall("/opt/homebrew/bin")
+function bar(arg)
+  print("Hello from bar! The arg is ".. arg)
+end
