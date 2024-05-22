@@ -20,7 +20,7 @@ return {
   },
   keys = {
     {
-      "<C-f>",
+      "<leader>ff",
       mode = { "n", "x", "o" },
       function()
         require("conform").format({ timeout_ms = 500, lsp_fallback = false })

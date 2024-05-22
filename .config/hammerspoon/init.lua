@@ -31,8 +31,8 @@ tapCmdTab:start()
 
 remap({ "ctrl" }, "n", pressFn("down"))
 remap({ "ctrl" }, "p", pressFn("up"))
-remap({ "ctrl", "shift" }, "n", pressFn("right"))
-remap({ "ctrl", "shift" }, "p", pressFn("left"))
+remap({ "ctrl" }, "f", pressFn("right"))
+remap({ "ctrl" }, "b", pressFn("left"))
 
 local function createNewSpace()
 	local currentScreen = hs.screen.mainScreen()
@@ -93,13 +93,15 @@ local keyMap = {
 			yabai({ "window --focus south" })
 		end,
 	},
-	[singleKey("r", "resize")] = {
-		[singleKey("h", "half")] = function()
-			yabai({ "window --ratio abs:0.5" })
-		end,
-		[singleKey("q", "q")] = function()
-			yabai({ "window --ratio abs:0.77" })
-		end,
+	[singleKey("y", "focus")] = {
+		[singleKey("r", "resize")] = {
+			[singleKey("h", "half")] = function()
+				yabai({ "window --ratio abs:0.5" })
+			end,
+			[singleKey("q", "q")] = function()
+				yabai({ "window --ratio abs:0.77" })
+			end,
+		},
 	},
 	[singleKey("x", "xcode")] = {
 		[singleKey("f", "focus")] = {

@@ -160,6 +160,7 @@
           "qbittorrent"
           "swiftformat-for-xcode"
           "bartender"
+          "iina"
           #"betterdisplay"
         ];
       };
