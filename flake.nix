@@ -2,13 +2,13 @@
   description = "JustinPolis Config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/release-23.11";
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/master";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
+      url = "github:nix-community/home-manager/release-24.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -30,7 +30,7 @@
         shells = [pkgs.fish];
         systemPackages = with pkgs; [
           git
-          neovim-nightly-overlay.packages.${pkgs.system}.default
+          neovim-unwrapped
           home-manager
           nixfmt
           ripgrep
@@ -161,6 +161,7 @@
           "swiftformat-for-xcode"
           "bartender"
           "iina"
+          "visual-studio-code"
           #"betterdisplay"
         ];
       };
