@@ -30,7 +30,6 @@
         shells = [pkgs.fish];
         systemPackages = with pkgs; [
           git
-          neovim-unwrapped
           home-manager
           nixfmt
           ripgrep
