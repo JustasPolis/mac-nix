@@ -23,7 +23,6 @@
   home.file.".config/alacritty".source = ./.config/alacritty;
   home.file."/.hammerspoon".source = ./.config/hammerspoon;
   home.file.".config/tmux/tmux.conf".source = ./.config/tmux/tmux.conf;
-  home.file.".config/tmux/plugins".source = ./.config/tmux/plugins;
 
   home.stateVersion = "23.11";
 
