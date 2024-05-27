@@ -8,6 +8,7 @@
   ...
 }: {
   home.username = "justinpolis";
+  home.enableNixpkgsReleaseCheck = false;
 
   home.packages = with pkgs; [];
 

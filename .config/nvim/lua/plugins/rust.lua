@@ -12,18 +12,18 @@ return {
           return buf
         end
 
-        require("panel").add({
-          name = "Dap",
-          module = {
-            on_enter = function(winid)
-              vim.api.nvim_win_set_buf(winid, buf)
-            end,
-            on_leave = function(winid)
-              print("im leaving")
-            end,
-          },
-        })
-      end,
+    --   require("panel").add({
+    --     name = "Dap",
+    --     module = {
+    --       on_enter = function(winid)
+    --         vim.api.nvim_win_set_buf(winid, buf)
+    --       end,
+    --       on_leave = function(winid)
+    --         print("im leaving")
+    --       end,
+    --     },
+    --   })
+     end,
     },
   },
   cmd = "Cargo",

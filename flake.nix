@@ -27,11 +27,11 @@
 
     configuration = {pkgs, ...}: {
       environment = {
-        shells = [pkgs.fish];
+        shells = [pkgs.bashInteractive pkgs.fish];
         systemPackages = with pkgs; [
           git
           home-manager
-          nixfmt
+          nixfmt-rfc-style
           ripgrep
           jq
           eza
@@ -131,6 +131,7 @@
           "koekeishiya/formulae"
           "FelixKratz/formulae"
           "JustasPolis/formulae"
+          "joshmedeski/sesh"
         ];
 
         brews = [
@@ -144,6 +145,10 @@
           "nowplaying-cli"
           "blueutil"
           "mac-apps"
+          "neovim"
+          "tmux"
+          "sesh"
+          "gum"
         ];
 
         casks = [

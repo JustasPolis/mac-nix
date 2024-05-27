@@ -65,7 +65,7 @@ local keyMap = {
 	},
 	[singleKey("a", "apps")] = {
 		[singleKey("t", "terminal")] = function()
-			hs.application.launchOrFocus("kitty")
+      os.execute("open /Applications/kitty.app")
 		end,
 		[singleKey("b", "browser")] = function()
 			hs.application.launchOrFocus("Arc")
@@ -100,6 +100,16 @@ local keyMap = {
 			end,
 			[singleKey("q", "q")] = function()
 				yabai({ "window --ratio abs:0.77" })
+			end,
+		},
+	},
+	[singleKey("b", "browser")] = {
+		[singleKey("t", "tab")] = {
+			[singleKey("n", "next")] = function()
+				hs.eventtap.keyStroke({ "alt", "cmd" }, "down", 200)
+			end,
+			[singleKey("p", "previous")] = function()
+				hs.eventtap.keyStroke({ "alt", "cmd" }, "up", 200)
 			end,
 		},
 	},

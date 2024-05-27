@@ -22,7 +22,7 @@ return {
       end
 
       if client.server_capabilities.inlayHintProvider then
-        vim.lsp.inlay_hint.enable(bufnr, true)
+        vim.lsp.inlay_hint.enable(true)
       end
 
       map("K", vim.lsp.buf.hover, "Hover Documentation")
