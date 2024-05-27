@@ -161,11 +161,10 @@
           "raycast"
           "obsidian"
           "xcodes"
-          "qbittorrent"
+          #"qbittorrent"
           "swiftformat-for-xcode"
-          "bartender"
+          #"bartender"
           "iina"
-          "visual-studio-code"
           #"betterdisplay"
         ];
       };
