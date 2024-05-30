@@ -22,7 +22,6 @@ defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
 defaults write com.apple.finder QuitMenuItem -bool true
 
-
 defaults write com.apple.finder DisableAllAnimations -bool true
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 defaults write com.apple.dock launchanim -bool false

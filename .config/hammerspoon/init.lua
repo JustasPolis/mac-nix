@@ -65,7 +65,7 @@ local keyMap = {
 	},
 	[singleKey("a", "apps")] = {
 		[singleKey("t", "terminal")] = function()
-      os.execute("open /Applications/kitty.app")
+			os.execute("open /Applications/kitty.app")
 		end,
 		[singleKey("b", "browser")] = function()
 			hs.application.launchOrFocus("Arc")
@@ -210,6 +210,53 @@ hs.spaces.watcher
 
 hs.ipc = require("hs.ipc")
 hs.ipc.cliInstall("/opt/homebrew/bin")
-function bar(arg)
-	print("Hello from bar! The arg is " .. arg)
+
+-- this version can *only* be used if invoked from within a coroutine
+function getYabaiWindowsFromWithinCoroutine()
+    if not coroutine.isyieldable() then
+        error("this function cannot be invoked on the main Lua thread")
+    end
+
+    local taskIsDone = false
+    local output
+    local task = hs.task.new('/opt/homebrew/bin/yabai',
+        function(_, stdOut, stdErr)
+            output = stdOut
+            taskIsDone = true
+        end,
+        { '-m', 'query', '--windows'})
+    task:start()
+
+    -- this code waits until the flag taskIsDone is set, but requires this function to only
+    -- be invoked from within a coroutine
+    while not taskIsDone do
+        coroutine.applicationYield()
+    end
+    return output
 end
+
+-- this is just a simplifier -- it wraps our code in a coroutine and starts it
+-- in this case, I wanted to make sure that it always creates a *new* coroutine
+-- so it can be invoked anew each time the hotkey below triggers it
+function makeActionACoroutine()
+    -- this makes your code run with a coroutine
+    coroutine.wrap(function()
+        -- this is where all of your code needs to go to use the getYabaiWindowsFromWithinCoroutine
+        -- function and "wait" for it's response
+        local yOutput = getYabaiWindowsFromWithinCoroutine()
+        local yJson = hs.json.decode(yOutput)
+        for i,v in ipairs(yJson) do
+            print(v.id, v.app, v.title)
+        end
+    end)() -- and starts the coroutine running
+end
+
+function profileFunction(func, ...)
+    local startTime = hs.timer.secondsSinceEpoch()
+    local result = {func(...)}
+    local endTime = hs.timer.secondsSinceEpoch()
+    print(string.format("Execution time: %.6f seconds", endTime - startTime))
+    return table.unpack(result)
+end
+
+print(profileFunction(makeActionACoroutine))
