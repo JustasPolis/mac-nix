@@ -211,33 +211,92 @@ hs.spaces.watcher
 hs.ipc = require("hs.ipc")
 hs.ipc.cliInstall("/opt/homebrew/bin")
 
+-- this version can *only* be used if invoked from within a coroutine
 function getYabaiWindowsFromWithinCoroutine()
-    if not coroutine.isyieldable() then
-        error("this function cannot be invoked on the main Lua thread")
-    end
+	if not coroutine.isyieldable() then
+		error("this function cannot be invoked on the main Lua thread")
+	end
 
-    local taskIsDone = false
-    local output
-    local task = hs.task.new('/opt/homebrew/bin/yabai',
-        function(_, stdOut, stdErr)
-            output = stdOut
-            taskIsDone = true
-        end,
-        { '-m', 'query', '--windows'})
-    task:start()
+	local taskIsDone = false
+	local output
+	local task = hs.task.new("/opt/homebrew/bin/yabai", function(_, stdOut, stdErr)
+		output = stdOut
+		taskIsDone = true
+	end, { "-m", "query", "--windows" })
+	task:start()
 
-    while not taskIsDone do
-        coroutine.applicationYield()
-    end
-    return output
+	-- this code waits until the flag taskIsDone is set, but requires this function to only
+	-- be invoked from within a coroutine
+	while not taskIsDone do
+		coroutine.applicationYield()
+	end
+	return output
 end
 
-function makeActionACoroutine()
-    coroutine.wrap(function()
-        local yOutput = getYabaiWindowsFromWithinCoroutine()
-        local yJson = hs.json.decode(yOutput)
-        for i,v in ipairs(yJson) do
-            print(v.id, v.app, v.title)
-        end
-    end)()
+local function getApps()
+	if not coroutine.isyieldable() then
+		error("this function cannot be invoked on the main Lua thread")
+	end
+
+	local firstTaskIsDone = false
+	local secondTaskIsDone = false
+	local output
+	local secondOutput
+	local firstTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
+		output = stdOut
+		firstTaskIsDone = true
+	end, { "kMDItemKind = 'Application'", "-onlyin", "/Applications" })
+	firstTask:start()
+
+	local secondTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
+		secondOutput = stdOut
+		secondTaskIsDone = true
+	end, { "kMDItemKind = 'Application'", "-onlyin", "/System/Applications" })
+	secondTask:start()
+
+	while not firstTaskIsDone do
+		coroutine.applicationYield()
+	end
+	return { output, secondOutput }
 end
+
+local function makeActionACoroutine()
+	coroutine.wrap(function()
+		local yOutput = getYabaiWindowsFromWithinCoroutine()
+		local yJson = hs.json.decode(yOutput)
+		for i, v in ipairs(yJson) do
+			print(v.id, v.app, v.title)
+		end
+	end)()
+end
+
+local function profileFunction(func, ...)
+	local startTime = hs.timer.secondsSinceEpoch()
+	local result = { func(...) }
+	local endTime = hs.timer.secondsSinceEpoch()
+	print(string.format("Execution time: %.6f seconds", endTime - startTime))
+	return table.unpack(result)
+end
+
+function getAppsCoroutine()
+	coroutine.wrap(function()
+		local yOutput = getApps()
+		local result = {}
+		for line in yOutput[1]:gmatch("([^\n]*)\n?") do
+			if line ~= "" then
+				local appName = line:match(".*/(.-)%.app")
+				result[appName] = line
+			end
+		end
+
+		for i, v in pairs(result) do
+			print(i, v)
+		end
+	end)()
+end
+
+local running_apps = hs.application.runningApplications()
+
+-- for index, val in pairs(running_apps) do
+--   print(val:path())
+-- end
