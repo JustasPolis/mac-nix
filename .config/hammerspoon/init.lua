@@ -238,26 +238,31 @@ local function getApps()
 		error("this function cannot be invoked on the main Lua thread")
 	end
 
-	local firstTaskIsDone = false
-	local secondTaskIsDone = false
-	local output
-	local secondOutput
-	local firstTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
-		output = stdOut
-		firstTaskIsDone = true
+	local userAppsTaskIsDone = false
+	local systemAppsTaskIsDone = false
+	local userAppsTaskOutput
+	local systemAppsTaskOutput
+	local userAppsTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
+		userAppsTaskOutput = stdOut
+		userAppsTaskIsDone = true
 	end, { "kMDItemKind = 'Application'", "-onlyin", "/Applications" })
-	firstTask:start()
+	userAppsTask:start()
 
-	local secondTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
-		secondOutput = stdOut
-		secondTaskIsDone = true
+	local systemAppsTask = hs.task.new("/usr/bin/mdfind", function(_, stdOut, stdErr)
+		systemAppsTaskOutput = stdOut
+		systemAppsTaskIsDone = true
 	end, { "kMDItemKind = 'Application'", "-onlyin", "/System/Applications" })
-	secondTask:start()
+	systemAppsTask:start()
 
-	while not firstTaskIsDone do
+	while not userAppsTaskIsDone do
 		coroutine.applicationYield()
 	end
-	return { output, secondOutput }
+
+	while not systemAppsTaskIsDone do
+		coroutine.applicationYield()
+	end
+
+	return userAppsTaskOutput .. systemAppsTaskOutput
 end
 
 local function makeActionACoroutine()
@@ -280,20 +285,22 @@ end
 
 function getAppsCoroutine()
 	coroutine.wrap(function()
-		local yOutput = getApps()
-		local result = {}
-		for line in yOutput[1]:gmatch("([^\n]*)\n?") do
-			if line ~= "" then
-				local appName = line:match(".*/(.-)%.app")
-				result[appName] = line
+		local apps = getApps()
+		local appsModified = {}
+		for appPath in apps:gmatch("([^\n]*)\n?") do
+			if appPath ~= "" then
+				local appName = appPath:match(".*/(.-)%.app")
+				appsModified[appName] = { isRunning = false, path = appPath }
 			end
 		end
 
-		for i, v in pairs(result) do
+		for i, v in pairs(appsModified) do
 			print(i, v)
 		end
 	end)()
 end
+
+getAppsCoroutine()
 
 local running_apps = hs.application.runningApplications()
 
